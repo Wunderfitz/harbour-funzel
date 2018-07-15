@@ -29,7 +29,10 @@ class Funzel : public QObject
     Q_OBJECT
 public:
     explicit Funzel(QObject *parent = 0);
+    ~Funzel();
     Wagnis *getWagnis();
+
+    Q_INVOKABLE void powerLed(const int &ledNumber, const int &intensityRed, const int &intensityGreen, const int &intensityBlue);
 
 signals:
 

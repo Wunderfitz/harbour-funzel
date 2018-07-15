@@ -19,46 +19,45 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "../components"
 
+VisualItemModel {
 
-Page {
-    id: overviewPage
-
-    allowedOrientations: Orientation.All
-
-    TheHoffModel {
-        id: hoffModel
+    function startTheHoff() {
+        console.log("[Funzel] Starting the Hoff...")
+        timerOne.start();
     }
 
-    Component.onCompleted: {
-        hoffModel.startTheHoff();
+    function stopTheHoff() {
+        timerOne.stop();
+        timerTwo.stop();
+        timerThree.stop();
+        timerFour.stop();
+        timerFive.stop();
     }
 
-    Component.onDestruction: {
-        hoffModel.stopTheHoff();
+    TheHoffTimer {
+        id: timerOne
+        myLed: 1;
+        hoffModel: parent
     }
-
-    SilicaFlickable {
-        anchors.fill: parent
-        contentHeight: overviewColumn.height
-
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("About Funzel")
-                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
-            }
-        }
-
-        Column {
-            id: overviewColumn
-
-            width: overviewPage.width
-            spacing: Theme.paddingMedium
-            PageHeader {
-                title: qsTr("Welcome to Funzel")
-            }
-        }
+    TheHoffTimer {
+        id: timerTwo
+        myLed: 2;
+        hoffModel: parent
+    }
+    TheHoffTimer {
+        id: timerThree
+        myLed: 3;
+        hoffModel: parent
+    }
+    TheHoffTimer {
+        id: timerFour
+        myLed: 4;
+        hoffModel: parent
+    }
+    TheHoffTimer {
+        id: timerFive
+        myLed: 5;
+        hoffModel: parent
     }
 }
-

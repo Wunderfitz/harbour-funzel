@@ -26,8 +26,9 @@ DISTFILES += qml/harbour-funzel.qml \
     rpm/harbour-funzel.yaml \
     translations/*.ts \
     harbour-funzel.desktop \
-    qml/pages/OverviewPage.qml \
-    qml/pages/AboutPage.qml \
+    qml/pages/*.qml \
+    qml/components/*.qml \
+    qml/components/TheHoffModel.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128
 
