@@ -22,6 +22,9 @@
 
 #include <QObject>
 #include <QNetworkAccessManager>
+#include <QDBusConnection>
+#include <QDBusInterface>
+#include <QDBusMessage>
 #include "wagnis/wagnis.h"
 
 class Funzel : public QObject
@@ -35,8 +38,12 @@ public:
     Q_INVOKABLE void powerLed(const int &ledNumber, const int &intensityRed, const int &intensityGreen, const int &intensityBlue);
 
 signals:
+    void powerOn();
+    void powerOff();
 
 public slots:
+    void onIncomingCall(const QDBusMessage &dBusMessage);
+    void onCallStatusChanged(const QDBusMessage &dBusMessage);
 
 private:
     QNetworkAccessManager *networkAccessManager;

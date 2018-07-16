@@ -24,6 +24,11 @@ Funzel::Funzel(QObject *parent) : QObject(parent)
 {
     this->networkAccessManager = new QNetworkAccessManager(this);
     wagnis = new Wagnis(this->networkAccessManager, "harbour-funzel", "0.1", this);
+
+    QDBusConnection::sessionBus().connect("", "/calls/active", "org.nemomobile.voicecall.VoiceCall", "lineIdChanged",
+                                          this, SLOT(onIncomingCall(const QDBusMessage&)));
+    QDBusConnection::sessionBus().connect("", "/calls/active", "org.nemomobile.voicecall.VoiceCall", "statusChanged",
+                                          this, SLOT(onCallStatusChanged(const QDBusMessage&)));
 }
 
 Funzel::~Funzel()
@@ -74,5 +79,35 @@ void Funzel::powerLed(const int &ledNumber, const int &intensityRed, const int &
         ledFile.close();
     } else {
         qDebug() << "[Funzel] Unable to acquire write access to LED";
+    }
+}
+
+void Funzel::onIncomingCall(const QDBusMessage &dBusMessage)
+{
+    qDebug() << "Funzel::onIncomingCall" << dBusMessage;
+
+    QString callingNumber = dBusMessage.arguments().at(0).toString();
+    QDBusInterface voiceCallInterface("org.nemomobile.voicecall",
+                                      "/calls/active",
+                                      "org.nemomobile.voicecall.VoiceCall",
+                                      QDBusConnection::sessionBus() );
+
+    if(voiceCallInterface.property("isIncoming").toBool()) {
+       qDebug() << "[Funzel] Incoming call..." << callingNumber;
+    } else {
+       qDebug() << "[Funzel] Other call..." << callingNumber;
+    }
+}
+
+void Funzel::onCallStatusChanged(const QDBusMessage &dBusMessage)
+{
+    qDebug() << "Funzel::onCallStatusChanged" << dBusMessage;
+    int callStatusCode = dBusMessage.arguments().at(0).toInt();
+    if (callStatusCode == 5) {
+        qDebug() << "[Funzel] Power ON!";
+        emit powerOn();
+    } else {
+        qDebug() << "[Funzel] Power OFF!";
+        emit powerOff();
     }
 }

@@ -28,6 +28,11 @@ Timer {
     property variant hoffModel;
     interval: 50
     repeat: true
+    function powerOff() {
+        stop();
+        funzel.powerLed(myLed, 0, 0, 0);
+    }
+
     onTriggered: {
         if (intensity === 3) {
             brighter = false;

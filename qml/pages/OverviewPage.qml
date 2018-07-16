@@ -31,12 +31,14 @@ Page {
         id: hoffModel
     }
 
-    Component.onCompleted: {
-        hoffModel.startTheHoff();
-    }
-
-    Component.onDestruction: {
-        hoffModel.stopTheHoff();
+    Connections {
+        target: funzel
+        onPowerOn: {
+            hoffModel.startTheHoff();
+        }
+        onPowerOff: {
+            hoffModel.stopTheHoff();
+        }
     }
 
     SilicaFlickable {

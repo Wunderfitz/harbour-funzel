@@ -23,16 +23,17 @@ import Sailfish.Silica 1.0
 VisualItemModel {
 
     function startTheHoff() {
-        console.log("[Funzel] Starting the Hoff...")
+        console.log("[Funzel] Starting the Hoff...");
         timerOne.start();
     }
 
     function stopTheHoff() {
-        timerOne.stop();
-        timerTwo.stop();
-        timerThree.stop();
-        timerFour.stop();
-        timerFive.stop();
+        console.log("[Funzel] Stopping the Hoff...");
+        timerOne.powerOff();
+        timerTwo.powerOff();
+        timerThree.powerOff();
+        timerFour.powerOff();
+        timerFive.powerOff();
     }
 
     TheHoffTimer {
