@@ -39,17 +39,17 @@ Page {
                 title: qsTr("About Funzel")
             }
 
-//            Image {
-//                id: FunzelImage
-//                source: "../../images/funzel.png"
-//                anchors {
-//                    horizontalCenter: parent.horizontalCenter
-//                }
+            Image {
+                id: funzelImage
+                source: "../../images/funzel.png"
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                }
 
-//                fillMode: Image.PreserveAspectFit
-//                width: 1/2 * parent.width
+                fillMode: Image.PreserveAspectFit
+                width: 1/2 * parent.width
 
-//            }
+            }
 
             Label {
                 text: "Funzel 0.1"

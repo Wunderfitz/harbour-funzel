@@ -23,24 +23,43 @@ import "."
 
 CoverBackground {
 
-//    Image {
-//        source: "../../images/background.png"
-//        anchors {
-//            verticalCenter: parent.verticalCenter
+    function setStatusText(switchedOn) {
+        if (switchedOn) {
+            statusText.text = qsTr("On");
+        } else {
+            statusText.text = qsTr("Off");
+        }
+    }
 
-//            bottom: parent.bottom
-//            bottomMargin: Theme.paddingMedium
+    Component.onCompleted: {
+        setStatusText(funzel.getUseAnimation());
+    }
 
-//            right: parent.right
-//            rightMargin: Theme.paddingMedium
-//        }
+    Image {
+        source: "../../images/background.png"
+        anchors {
+            verticalCenter: parent.verticalCenter
 
-//        fillMode: Image.PreserveAspectFit
-//        opacity: 0.1
-//    }
+            bottom: parent.bottom
+            bottomMargin: Theme.paddingMedium
+
+            right: parent.right
+            rightMargin: Theme.paddingMedium
+        }
+
+        fillMode: Image.PreserveAspectFit
+        opacity: 0.2
+    }
+
+    Connections {
+        target: funzel
+        onUseAnimationChanged: {
+            setStatusText(funzel.getUseAnimation());
+        }
+    }
 
     Label {
-        text: "Funzel"
+        id: statusText
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Theme.fontSizeExtraLarge
         anchors {

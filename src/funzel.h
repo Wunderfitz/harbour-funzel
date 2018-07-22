@@ -25,6 +25,7 @@
 #include <QDBusConnection>
 #include <QDBusInterface>
 #include <QDBusMessage>
+#include <QSettings>
 #include "wagnis/wagnis.h"
 
 class Funzel : public QObject
@@ -36,18 +37,26 @@ public:
     Wagnis *getWagnis();
 
     Q_INVOKABLE void powerLed(const int &ledNumber, const int &intensityRed, const int &intensityGreen, const int &intensityBlue);
+    Q_INVOKABLE void setUseAnimation(const bool &useAnimation);
+    Q_INVOKABLE bool getUseAnimation();
+    Q_INVOKABLE void setAnimationColor(const int &animationColor);
+    Q_INVOKABLE int getAnimationColor();
 
 signals:
     void powerOn();
     void powerOff();
+    void useAnimationChanged();
+    void animationColorChanged();
 
 public slots:
     void onIncomingCall(const QDBusMessage &dBusMessage);
     void onCallStatusChanged(const QDBusMessage &dBusMessage);
+    void onVoiceCallsChanged(const QDBusMessage &dBusMessage);
 
 private:
     QNetworkAccessManager *networkAccessManager;
     Wagnis *wagnis;
+    QSettings settings;
 };
 
 #endif // FUNZEL_H

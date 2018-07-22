@@ -20,6 +20,41 @@ include(src/wagnis/wagnis.pri)
 SOURCES += src/harbour-funzel.cpp \
     src/funzel.cpp
 
+SAILFISHAPP_ICONS = 86x86 108x108 128x128
+
+gui.files = qml
+gui.path = /usr/share/$${TARGET}
+
+images.files = images
+images.path = /usr/share/$${TARGET}
+
+ICONPATH = /usr/share/icons/hicolor
+
+86.png.path = $${ICONPATH}/86x86/apps/
+86.png.files += icons/86x86/harbour-piepmatz.png
+
+108.png.path = $${ICONPATH}/108x108/apps/
+108.png.files += icons/108x108/harbour-piepmatz.png
+
+128.png.path = $${ICONPATH}/128x128/apps/
+128.png.files += icons/128x128/harbour-piepmatz.png
+
+256.png.path = $${ICONPATH}/256x256/apps/
+256.png.files += icons/256x256/harbour-piepmatz.png
+
+funzel.desktop.path = /usr/share/applications/
+funzel.desktop.files = harbour-funzel.desktop
+
+INSTALLS += 86.png 108.png 128.png 256.png \
+            piepmatz.funzel gui images
+
+CONFIG += sailfishapp_i18n
+
+TRANSLATIONS += translations/harbour-funzel-de.ts
+
+HEADERS += \
+    src/funzel.h
+
 DISTFILES += qml/harbour-funzel.qml \
     qml/cover/CoverPage.qml \
     rpm/harbour-funzel.changes.in \
@@ -27,22 +62,8 @@ DISTFILES += qml/harbour-funzel.qml \
     rpm/harbour-funzel.spec \
     rpm/harbour-funzel.yaml \
     translations/*.ts \
+    images/*.png \
     harbour-funzel.desktop \
     qml/pages/*.qml \
     qml/components/*.qml \
     qml/components/TheHoffModel.qml
-
-SAILFISHAPP_ICONS = 86x86 108x108 128x128
-
-# to disable building translations every time, comment out the
-# following CONFIG line
-CONFIG += sailfishapp_i18n
-
-# German translation is enabled as an example. If you aren't
-# planning to localize your app, remember to comment out the
-# following TRANSLATIONS line. And also do not forget to
-# modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/harbour-funzel-de.ts
-
-HEADERS += \
-    src/funzel.h

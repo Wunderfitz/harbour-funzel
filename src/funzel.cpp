@@ -19,8 +19,12 @@
 
 #include "funzel.h"
 #include <QFile>
+#include <QStringListIterator>
 
-Funzel::Funzel(QObject *parent) : QObject(parent)
+const char SETTINGS_USE_ANIMATION[] = "settings/useAnimation";
+const char SETTINGS_ANIMATION_COLOR[] = "settings/animationColor";
+
+Funzel::Funzel(QObject *parent) : QObject(parent), settings("harbour-funzel", "settings")
 {
     this->networkAccessManager = new QNetworkAccessManager(this);
     wagnis = new Wagnis(this->networkAccessManager, "harbour-funzel", "0.1", this);
@@ -29,6 +33,8 @@ Funzel::Funzel(QObject *parent) : QObject(parent)
                                           this, SLOT(onIncomingCall(const QDBusMessage&)));
     QDBusConnection::sessionBus().connect("", "/calls/active", "org.nemomobile.voicecall.VoiceCall", "statusChanged",
                                           this, SLOT(onCallStatusChanged(const QDBusMessage&)));
+    QDBusConnection::sessionBus().connect("org.nemomobile.voicecall", "/", "org.nemomobile.voicecall.VoiceCallManager", "voiceCallsChanged",
+                                          this, SLOT(onVoiceCallsChanged(const QDBusMessage&)));
 }
 
 Funzel::~Funzel()
@@ -82,6 +88,28 @@ void Funzel::powerLed(const int &ledNumber, const int &intensityRed, const int &
     }
 }
 
+void Funzel::setUseAnimation(const bool &useAnimation)
+{
+    settings.setValue(SETTINGS_USE_ANIMATION, useAnimation);
+    emit useAnimationChanged();
+}
+
+bool Funzel::getUseAnimation()
+{
+    return settings.value(SETTINGS_USE_ANIMATION, true).toBool();
+}
+
+void Funzel::setAnimationColor(const int &animationColor)
+{
+    settings.setValue(SETTINGS_ANIMATION_COLOR, animationColor);
+    emit animationColorChanged();
+}
+
+int Funzel::getAnimationColor()
+{
+    return settings.value(SETTINGS_ANIMATION_COLOR, 0).toInt();
+}
+
 void Funzel::onIncomingCall(const QDBusMessage &dBusMessage)
 {
     qDebug() << "Funzel::onIncomingCall" << dBusMessage;
@@ -92,7 +120,7 @@ void Funzel::onIncomingCall(const QDBusMessage &dBusMessage)
                                       "org.nemomobile.voicecall.VoiceCall",
                                       QDBusConnection::sessionBus() );
 
-    if(voiceCallInterface.property("isIncoming").toBool()) {
+    if (voiceCallInterface.property("isIncoming").toBool()) {
        qDebug() << "[Funzel] Incoming call..." << callingNumber;
     } else {
        qDebug() << "[Funzel] Other call..." << callingNumber;
@@ -109,5 +137,19 @@ void Funzel::onCallStatusChanged(const QDBusMessage &dBusMessage)
     } else {
         qDebug() << "[Funzel] Power OFF!";
         emit powerOff();
+    }
+}
+
+void Funzel::onVoiceCallsChanged(const QDBusMessage &dBusMessage)
+{
+    qDebug() << "Funzel::onVoiceCallsChanged" << dBusMessage;
+    QDBusInterface voiceCallInterface("org.nemomobile.voicecall",
+                                      "/",
+                                      "org.nemomobile.voicecall.VoiceCallManager",
+                                      QDBusConnection::sessionBus() );
+    QStringList voiceCalls = voiceCallInterface.property("voiceCalls").toStringList();
+    if (voiceCalls.size() == 0) {
+        qDebug() << "[Funzel] Power OFF!";
+        powerOff();
     }
 }

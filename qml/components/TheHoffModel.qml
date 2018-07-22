@@ -22,8 +22,12 @@ import Sailfish.Silica 1.0
 
 VisualItemModel {
 
+    property int red: 1;
+    property int green: 0;
+    property int blue: 0;
+
     function startTheHoff() {
-        console.log("[Funzel] Starting the Hoff...");
+        console.log("[Funzel] Starting the Hoff...", red, green, blue);
         timerOne.start();
     }
 

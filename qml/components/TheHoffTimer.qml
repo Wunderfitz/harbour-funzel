@@ -26,10 +26,14 @@ Timer {
     property bool brighter : true;
     property bool upwards : true;
     property variant hoffModel;
+
     interval: 50
     repeat: true
     function powerOff() {
         stop();
+        intensity = 0;
+        brighter = true;
+        upwards = true;
         funzel.powerLed(myLed, 0, 0, 0);
     }
 
@@ -68,7 +72,7 @@ Timer {
         } else {
             intensity--;
         }
-        funzel.powerLed(myLed, intensity, 0, 0);
+        funzel.powerLed(myLed, hoffModel.red * intensity, hoffModel.green * intensity, hoffModel.blue * intensity);
         if (intensity === 0) {
             stop();
         }
