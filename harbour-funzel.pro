@@ -58,7 +58,6 @@ HEADERS += \
 DISTFILES += qml/harbour-funzel.qml \
     qml/cover/CoverPage.qml \
     rpm/harbour-funzel.changes.in \
-    rpm/harbour-funzel.changes.run.in \
     rpm/harbour-funzel.spec \
     rpm/harbour-funzel.yaml \
     translations/*.ts \

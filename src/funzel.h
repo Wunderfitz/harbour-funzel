@@ -41,6 +41,7 @@ public:
     Q_INVOKABLE bool getUseAnimation();
     Q_INVOKABLE void setAnimationColor(const int &animationColor);
     Q_INVOKABLE int getAnimationColor();
+    Q_INVOKABLE bool isGeminiFound();
 
 signals:
     void powerOn();
@@ -57,6 +58,7 @@ private:
     QNetworkAccessManager *networkAccessManager;
     Wagnis *wagnis;
     QSettings settings;
+    bool geminiFound;
 };
 
 #endif // FUNZEL_H

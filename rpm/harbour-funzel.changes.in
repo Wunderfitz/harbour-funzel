@@ -9,10 +9,6 @@
 # the git-change-log command provided with Sailfish OS SDK), create a
 # harbour-funzel.changes.run script to let mb2 run the required commands for you.
 
-# * date Author's Name <author's email> version-release
-# - Summary of changes
-
-* Sun Apr 13 2014 Jack Tar <jack.tar@example.com> 0.0.1-1
-- Scrubbed the deck
-- Hoisted the sails
+* Tue Jul 24 2018 Sebastian J. Wolf <sebastian@ygriega.de> 0.1
+- Initial release
 

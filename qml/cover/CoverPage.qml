@@ -23,16 +23,24 @@ import "."
 
 CoverBackground {
 
+    property bool isSwitchedOn: false
+
     function setStatusText(switchedOn) {
-        if (switchedOn) {
-            statusText.text = qsTr("On");
-        } else {
-            statusText.text = qsTr("Off");
-        }
+        isSwitchedOn = switchedOn;
     }
 
     Component.onCompleted: {
         setStatusText(funzel.getUseAnimation());
+    }
+
+    CoverActionList {
+        enabled: funzel.isGeminiFound()
+        CoverAction {
+            iconSource: isSwitchedOn ? "image://theme/icon-cover-mute" : "image://theme/icon-cover-unmute"
+            onTriggered: {
+                isSwitchedOn ? funzel.setUseAnimation(false) : funzel.setUseAnimation(true);
+            }
+        }
     }
 
     Image {
@@ -62,6 +70,7 @@ CoverBackground {
         id: statusText
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Theme.fontSizeExtraLarge
+        text: isSwitchedOn ? qsTr("On") : qsTr("Off")
         anchors {
             horizontalCenter: parent.horizontalCenter
             verticalCenter: parent.verticalCenter

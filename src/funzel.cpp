@@ -35,6 +35,12 @@ Funzel::Funzel(QObject *parent) : QObject(parent), settings("harbour-funzel", "s
                                           this, SLOT(onCallStatusChanged(const QDBusMessage&)));
     QDBusConnection::sessionBus().connect("org.nemomobile.voicecall", "/", "org.nemomobile.voicecall.VoiceCallManager", "voiceCallsChanged",
                                           this, SLOT(onVoiceCallsChanged(const QDBusMessage&)));
+
+    if (QFile::exists("/proc/aw9120_operation")) {
+        this->geminiFound = true;
+    } else {
+        this->geminiFound = false;
+    }
 }
 
 Funzel::~Funzel()
@@ -96,7 +102,7 @@ void Funzel::setUseAnimation(const bool &useAnimation)
 
 bool Funzel::getUseAnimation()
 {
-    return settings.value(SETTINGS_USE_ANIMATION, true).toBool();
+    return settings.value(SETTINGS_USE_ANIMATION, false).toBool();
 }
 
 void Funzel::setAnimationColor(const int &animationColor)
@@ -108,6 +114,11 @@ void Funzel::setAnimationColor(const int &animationColor)
 int Funzel::getAnimationColor()
 {
     return settings.value(SETTINGS_ANIMATION_COLOR, 0).toInt();
+}
+
+bool Funzel::isGeminiFound()
+{
+    return this->geminiFound;
 }
 
 void Funzel::onIncomingCall(const QDBusMessage &dBusMessage)

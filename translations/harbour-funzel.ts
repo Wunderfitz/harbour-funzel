@@ -105,5 +105,17 @@
         <source>Animation Color</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>No Gemini PDA found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It seems that Funzel is not running on a Gemini PDA. As this is the only device which Funzel is supporting, this application will be rather useless on your device.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
