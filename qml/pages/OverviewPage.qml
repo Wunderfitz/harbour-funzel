@@ -162,7 +162,7 @@ Page {
 
             Timer {
                 id: testAnimationTimer
-                interval: 3000
+                interval: 5000
                 repeat: false
                 onTriggered: {
                     hoffModel.stopTheHoff();

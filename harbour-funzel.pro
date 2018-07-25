@@ -31,22 +31,22 @@ images.path = /usr/share/$${TARGET}
 ICONPATH = /usr/share/icons/hicolor
 
 86.png.path = $${ICONPATH}/86x86/apps/
-86.png.files += icons/86x86/harbour-piepmatz.png
+86.png.files += icons/86x86/harbour-funzel.png
 
 108.png.path = $${ICONPATH}/108x108/apps/
-108.png.files += icons/108x108/harbour-piepmatz.png
+108.png.files += icons/108x108/harbour-funzel.png
 
 128.png.path = $${ICONPATH}/128x128/apps/
-128.png.files += icons/128x128/harbour-piepmatz.png
+128.png.files += icons/128x128/harbour-funzel.png
 
 256.png.path = $${ICONPATH}/256x256/apps/
-256.png.files += icons/256x256/harbour-piepmatz.png
+256.png.files += icons/256x256/harbour-funzel.png
 
 funzel.desktop.path = /usr/share/applications/
 funzel.desktop.files = harbour-funzel.desktop
 
 INSTALLS += 86.png 108.png 128.png 256.png \
-            piepmatz.funzel gui images
+            funzel.desktop gui images
 
 CONFIG += sailfishapp_i18n
 
