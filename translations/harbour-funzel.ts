@@ -41,6 +41,52 @@
     </message>
 </context>
 <context>
+    <name>ColorSelectionPage</name>
+    <message>
+        <source>Select a Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Red</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yellow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Light Blue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Purple</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>White</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactsSelectionPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select a Contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
         <source>On</source>
@@ -48,6 +94,13 @@
     </message>
     <message>
         <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LoadingIndicator</name>
+    <message>
+        <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -102,10 +155,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Animation Color</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>No Gemini PDA found!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -115,6 +164,18 @@
     </message>
     <message>
         <source>It seems that Funzel is not running on a Gemini PDA. As this is the only device which Funzel is supporting, this application will be rather useless on your device.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Animation Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contact-specific Animation Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Assign Color to Contact</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

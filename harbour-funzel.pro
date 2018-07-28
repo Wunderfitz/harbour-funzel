@@ -64,5 +64,4 @@ DISTFILES += qml/harbour-funzel.qml \
     images/*.png \
     harbour-funzel.desktop \
     qml/pages/*.qml \
-    qml/components/*.qml \
-    qml/components/TheHoffModel.qml
+    qml/components/*.qml

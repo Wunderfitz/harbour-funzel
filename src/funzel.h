@@ -26,6 +26,10 @@
 #include <QDBusInterface>
 #include <QDBusMessage>
 #include <QSettings>
+#include <QVariantList>
+#include <QVariantMap>
+#include <QSqlDatabase>
+#include <QSqlQuery>
 #include "wagnis/wagnis.h"
 
 class Funzel : public QObject
@@ -42,12 +46,21 @@ public:
     Q_INVOKABLE void setAnimationColor(const int &animationColor);
     Q_INVOKABLE int getAnimationColor();
     Q_INVOKABLE bool isGeminiFound();
+    Q_INVOKABLE bool isContactsDbAvailable();
+    Q_INVOKABLE void loadContacts();
+    Q_INVOKABLE void assignAnimationColor(const QString &animationColor, const QString &contactId);
+    Q_INVOKABLE QVariantMap getColorAssignments();
+    Q_INVOKABLE QString getContactDisplayName(const QString &contactId);
+    Q_INVOKABLE QString getColorId(const int &colorIndex);
+    Q_INVOKABLE int getColorIndex(const QString &colorId);
 
 signals:
     void powerOn();
     void powerOff();
     void useAnimationChanged();
     void animationColorChanged();
+    void contactsLoaded(const QVariantList &contacts);
+    void errorLoadingContacts();
 
 public slots:
     void onIncomingCall(const QDBusMessage &dBusMessage);
@@ -59,6 +72,14 @@ private:
     Wagnis *wagnis;
     QSettings settings;
     bool geminiFound;
+    bool canUseContactsDb;
+    QSqlDatabase database;
+    QVariantMap contacts;
+    QVariantMap colorAssignments;
+    QVariantMap contactAssignments;
+
+    void initializeDatabase();
+    void initializeContactAssignments();
 };
 
 #endif // FUNZEL_H

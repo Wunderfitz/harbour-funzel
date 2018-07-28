@@ -52,7 +52,7 @@ Page {
             }
 
             Label {
-                text: "Funzel 0.1"
+                text: "Funzel 0.2"
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: Theme.fontSizeExtraLarge
                 anchors {

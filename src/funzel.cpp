@@ -20,14 +20,18 @@
 #include "funzel.h"
 #include <QFile>
 #include <QStringListIterator>
+#include <QListIterator>
+#include <QMapIterator>
+#include <QSqlError>
 
 const char SETTINGS_USE_ANIMATION[] = "settings/useAnimation";
 const char SETTINGS_ANIMATION_COLOR[] = "settings/animationColor";
+const char SETTINGS_COLOR_ASSIGNMENT_PREFIX[] = "settings/colorAssignment_";
 
 Funzel::Funzel(QObject *parent) : QObject(parent), settings("harbour-funzel", "settings")
 {
     this->networkAccessManager = new QNetworkAccessManager(this);
-    wagnis = new Wagnis(this->networkAccessManager, "harbour-funzel", "0.1", this);
+    wagnis = new Wagnis(this->networkAccessManager, "harbour-funzel", "0.2", this);
 
     QDBusConnection::sessionBus().connect("", "/calls/active", "org.nemomobile.voicecall.VoiceCall", "lineIdChanged",
                                           this, SLOT(onIncomingCall(const QDBusMessage&)));
@@ -41,6 +45,8 @@ Funzel::Funzel(QObject *parent) : QObject(parent), settings("harbour-funzel", "s
     } else {
         this->geminiFound = false;
     }
+    initializeDatabase();
+    initializeContactAssignments();
 }
 
 Funzel::~Funzel()
@@ -121,6 +127,135 @@ bool Funzel::isGeminiFound()
     return this->geminiFound;
 }
 
+bool Funzel::isContactsDbAvailable()
+{
+    return this->canUseContactsDb;
+}
+
+void Funzel::loadContacts()
+{
+    qDebug() << "Funzel::loadContacts";
+    QVariantList listContacts;
+    contacts.clear();
+    QSqlQuery databaseQuery(database);
+    databaseQuery.prepare("select distinct contactId, displayLabel from Contacts where displayLabel is not null order by displayLabel collate nocase asc;");
+    if (databaseQuery.exec()) {
+        qDebug() << "Contacts successfully selected from database!";
+        while (databaseQuery.next()) {
+            QVariantMap singleContact;
+            singleContact.insert("contactId", databaseQuery.value(0).toString());
+            singleContact.insert("displayName", databaseQuery.value(1).toString());
+            listContacts.append(singleContact);
+            contacts.insert(singleContact.value("contactId").toString(), singleContact.value("displayName"));
+        }
+        qDebug() << "We probably found some contacts: " << listContacts.size();
+        emit contactsLoaded(listContacts);
+    } else {
+        qDebug() << "Error selecting followers from database!";
+        emit errorLoadingContacts();
+    }
+}
+
+void Funzel::assignAnimationColor(const QString &animationColor, const QString &contactId)
+{
+    qDebug() << "Funzel::assignAnimationColor" << animationColor << contactId;
+    colorAssignments.clear();
+
+    contactAssignments.insert(contactId, animationColor);
+    QMapIterator<QString, QVariant> contactAssignmentIterator(contactAssignments);
+    while (contactAssignmentIterator.hasNext()) {
+        contactAssignmentIterator.next();
+        QString currentContactId = contactAssignmentIterator.key();
+        QString currentAnimationColor = contactAssignmentIterator.value().toString();
+
+        QVariantList assignedContacts;
+        if (colorAssignments.contains(currentAnimationColor)) {
+            assignedContacts = colorAssignments.value(currentAnimationColor).toList();
+        }
+        assignedContacts.append(currentContactId);
+        colorAssignments.insert(currentAnimationColor, assignedContacts);
+    }
+
+    QMapIterator<QString, QVariant> colorAssignmentIterator(colorAssignments);
+    while (colorAssignmentIterator.hasNext()) {
+        colorAssignmentIterator.next();
+        QVariantList currentColorAssignments = colorAssignmentIterator.value().toList();
+        if (currentColorAssignments.size() <= 1) {
+            settings.setValue(SETTINGS_COLOR_ASSIGNMENT_PREFIX + QString::number(getColorIndex(colorAssignmentIterator.key())), currentColorAssignments.value(0));
+        } else {
+            settings.setValue(SETTINGS_COLOR_ASSIGNMENT_PREFIX + QString::number(getColorIndex(colorAssignmentIterator.key())), currentColorAssignments);
+        }
+
+    }
+}
+
+QVariantMap Funzel::getColorAssignments()
+{
+    qDebug() << "Funzel::getColorAssignments";
+    return this->colorAssignments;
+}
+
+QString Funzel::getContactDisplayName(const QString &contactId)
+{
+    return this->contacts.value(contactId).toString();
+}
+
+QString Funzel::getColorId(const int &colorIndex)
+{
+    switch (colorIndex) {
+    case 0:
+        return "red";
+        break;
+    case 1:
+        return "green";
+        break;
+    case 2:
+        return "blue";
+        break;
+    case 3:
+        return "yellow";
+        break;
+    case 4:
+        return "lightBlue";
+        break;
+    case 5:
+        return "purple";
+        break;
+    case 6:
+        return "white";
+        break;
+    default:
+        return "red";
+        break;
+    }
+}
+
+int Funzel::getColorIndex(const QString &colorId)
+{
+    if (colorId == "red") {
+        return 0;
+    }
+    if (colorId == "green") {
+        return 1;
+    }
+    if (colorId == "blue") {
+        return 2;
+    }
+    if (colorId == "yellow") {
+        return 3;
+    }
+    if (colorId == "lightBlue") {
+        return 4;
+    }
+    if (colorId == "purple") {
+        return 5;
+    }
+    if (colorId == "white") {
+        return 6;
+    }
+    return 0;
+}
+
 void Funzel::onIncomingCall(const QDBusMessage &dBusMessage)
 {
     qDebug() << "Funzel::onIncomingCall" << dBusMessage;
@@ -162,5 +297,36 @@ void Funzel::onVoiceCallsChanged(const QDBusMessage &dBusMessage)
     if (voiceCalls.size() == 0) {
         qDebug() << "[Funzel] Power OFF!";
         powerOff();
+    }
+}
+
+void Funzel::initializeDatabase()
+{
+    qDebug() << "Funzel::initializeDatabase";
+    database = QSqlDatabase::addDatabase("QSQLITE");
+    database.setDatabaseName("/home/nemo/.local/share/system/Contacts/qtcontacts-sqlite/contacts.db");
+    if (database.open()) {
+        qDebug() << "Contacts database successfully opened :)";
+        canUseContactsDb = true;
+    } else {
+        qDebug() << "Error opening Contacts database :(";
+        canUseContactsDb = false;
+    }
+}
+
+void Funzel::initializeContactAssignments()
+{
+    qDebug() << "Funzel::initializeContactAssignments";
+    colorAssignments.clear();
+    contactAssignments.clear();
+    for (int i = 0; i <= 6; i++) {
+        QString colorId = getColorId(i);
+        QVariantList assignedContacts = settings.value(SETTINGS_COLOR_ASSIGNMENT_PREFIX + QString::number(i)).toList();
+        colorAssignments.insert(colorId, assignedContacts);
+        QListIterator<QVariant> contactIterator(assignedContacts);
+        while (contactIterator.hasNext()) {
+            QString contactId = contactIterator.next().toString();
+            contactAssignments.insert(contactId, colorId);
+        }
     }
 }

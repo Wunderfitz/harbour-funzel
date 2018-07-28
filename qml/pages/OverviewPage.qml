@@ -26,6 +26,7 @@ Page {
     id: overviewPage
 
     allowedOrientations: Orientation.All
+    property variant colorAssignments: funzel.getColorAssignments();
 
     TheHoffModel {
         id: hoffModel
@@ -83,7 +84,7 @@ Page {
 
             ComboBox {
                 id: funzelColor
-                label: qsTr("Animation Color")
+                label: qsTr("Default Animation Color")
                 menu: ContextMenu {
                     MenuItem {
                         text: qsTr("Red")
@@ -168,6 +169,99 @@ Page {
                     hoffModel.stopTheHoff();
                 }
             }
+
+            SectionHeader {
+                text: qsTr("Contact-specific Animation Color")
+                font.pixelSize: Theme.fontSizeMedium
+                 height: Theme.itemSizeSmall
+            }
+
+            Button {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: qsTr("Assign Color to Contact")
+                enabled: funzelSwitch.checked
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("ContactsSelectionPage.qml"))
+                }
+            }
+
+            SectionHeader {
+                text: qsTr("Red")
+                visible: redRepeater.count > 0
+            }
+
+            Repeater {
+                id: redRepeater
+                model: overviewPage.colorAssignments.red
+                delegate: AssignedContactsListItem {}
+            }
+
+            SectionHeader {
+                text: qsTr("Green")
+                visible: greenRepeater.count > 0
+            }
+
+            Repeater {
+                id: greenRepeater
+                model: overviewPage.colorAssignments.green
+                delegate: AssignedContactsListItem {}
+            }
+
+            SectionHeader {
+                text: qsTr("Blue")
+                visible: blueRepeater.count > 0
+            }
+
+            Repeater {
+                id: blueRepeater
+                model: overviewPage.colorAssignments.blue
+                delegate: AssignedContactsListItem {}
+            }
+
+            SectionHeader {
+                text: qsTr("Yellow")
+                visible: yellowRepeater.count > 0
+            }
+
+            Repeater {
+                id: yellowRepeater
+                model: overviewPage.colorAssignments.yellow
+                delegate: AssignedContactsListItem {}
+            }
+
+            SectionHeader {
+                text: qsTr("Light Blue")
+                visible: lightBlueRepeater.count > 0
+            }
+
+            Repeater {
+                id: lightBlueRepeater
+                model: overviewPage.colorAssignments.lightBlue
+                delegate: AssignedContactsListItem {}
+            }
+
+            SectionHeader {
+                text: qsTr("Purple")
+                visible: purpleRepeater.count > 0
+            }
+
+            Repeater {
+                id: purpleRepeater
+                model: overviewPage.colorAssignments.purple
+                delegate: AssignedContactsListItem {}
+            }
+
+            SectionHeader {
+                text: qsTr("White")
+                visible: whiteRepeater.count > 0
+            }
+
+            Repeater {
+                id: whiteRepeater
+                model: overviewPage.colorAssignments.white
+                delegate: AssignedContactsListItem {}
+            }
+
         }
     }
 
