@@ -41,6 +41,13 @@
     </message>
 </context>
 <context>
+    <name>AssignedContactsListItem</name>
+    <message>
+        <source>Remove Contact Assignment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ColorSelectionPage</name>
     <message>
         <source>Select a Color</source>

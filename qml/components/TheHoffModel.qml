@@ -26,6 +26,46 @@ VisualItemModel {
     property int green: 0;
     property int blue: 0;
 
+    function setColorIndex(chosenIndex) {
+        switch (chosenIndex) {
+        case 0:
+            red   = 1;
+            green = 0;
+            blue  = 0;
+            break;
+        case 1:
+            red   = 0;
+            green = 1;
+            blue  = 0;
+            break;
+        case 2:
+            red   = 0;
+            green = 0;
+            blue  = 1;
+            break;
+        case 3:
+            red   = 1;
+            green = 1;
+            blue  = 0;
+            break;
+        case 4:
+            red   = 0;
+            green = 1;
+            blue  = 1;
+            break;
+        case 5:
+            red   = 1;
+            green = 0;
+            blue  = 1;
+            break;
+        case 6:
+            red   = 1;
+            green = 1;
+            blue  = 1;
+            break;
+        }
+    }
+
     function startTheHoff() {
         console.log("[Funzel] Starting the Hoff...", red, green, blue);
         timerOne.start();

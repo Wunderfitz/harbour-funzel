@@ -21,6 +21,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 ListItem {
+    id: assignedContactListItem
     contentHeight: Theme.itemSizeSmall
     Label {
         id: singleContact
@@ -28,5 +29,13 @@ ListItem {
         width: parent.width - 2 * Theme.horizontalPageMargin
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
+    }
+    menu: ContextMenu {
+        MenuItem {
+            text: qsTr("Remove Contact Assignment")
+            onClicked: {
+                funzel.deleteContactAssignment(modelData);
+            }
+        }
     }
 }

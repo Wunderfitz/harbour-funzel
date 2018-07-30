@@ -33,7 +33,7 @@
     </message>
     <message>
         <source>Wagnis ID: </source>
-        <translation type="unfinished"></translation>
+        <translation>Wagnis-ID: </translation>
     </message>
     <message>
         <source>Show Wagnis ID</source>
@@ -41,49 +41,56 @@
     </message>
 </context>
 <context>
+    <name>AssignedContactsListItem</name>
+    <message>
+        <source>Remove Contact Assignment</source>
+        <translation>Kontaktzuordnung entfernen</translation>
+    </message>
+</context>
+<context>
     <name>ColorSelectionPage</name>
     <message>
         <source>Select a Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie eine Farbe</translation>
     </message>
     <message>
         <source>Red</source>
-        <translation type="unfinished">Rot</translation>
+        <translation>Rot</translation>
     </message>
     <message>
         <source>Green</source>
-        <translation type="unfinished">Grün</translation>
+        <translation>Grün</translation>
     </message>
     <message>
         <source>Blue</source>
-        <translation type="unfinished">Blau</translation>
+        <translation>Blau</translation>
     </message>
     <message>
         <source>Yellow</source>
-        <translation type="unfinished">Gelb</translation>
+        <translation>Gelb</translation>
     </message>
     <message>
         <source>Light Blue</source>
-        <translation type="unfinished">Hellblau</translation>
+        <translation>Hellblau</translation>
     </message>
     <message>
         <source>Purple</source>
-        <translation type="unfinished">Violett</translation>
+        <translation>Violett</translation>
     </message>
     <message>
         <source>White</source>
-        <translation type="unfinished">Weiß</translation>
+        <translation>Weiß</translation>
     </message>
 </context>
 <context>
     <name>ContactsSelectionPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>Select a Contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie einen Kontakt</translation>
     </message>
 </context>
 <context>
@@ -101,7 +108,7 @@
     <name>LoadingIndicator</name>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Laden...</translation>
     </message>
 </context>
 <context>
@@ -168,15 +175,15 @@
     </message>
     <message>
         <source>Default Animation Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard-Animationsfarbe</translation>
     </message>
     <message>
         <source>Contact-specific Animation Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontaktspezifische Animationsfarbe</translation>
     </message>
     <message>
         <source>Assign Color to Contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbe einem Kontakt zuweisen</translation>
     </message>
 </context>
 </TS>

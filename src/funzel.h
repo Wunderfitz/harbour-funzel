@@ -49,6 +49,7 @@ public:
     Q_INVOKABLE bool isContactsDbAvailable();
     Q_INVOKABLE void loadContacts();
     Q_INVOKABLE void assignAnimationColor(const QString &animationColor, const QString &contactId);
+    Q_INVOKABLE void deleteContactAssignment(const QString &contactId);
     Q_INVOKABLE QVariantMap getColorAssignments();
     Q_INVOKABLE QString getContactDisplayName(const QString &contactId);
     Q_INVOKABLE QString getColorId(const int &colorIndex);
@@ -56,9 +57,11 @@ public:
 
 signals:
     void powerOn();
+    void powerColor(const int &colorIndex);
     void powerOff();
     void useAnimationChanged();
     void animationColorChanged();
+    void contactAssignmentsInvalidated();
     void contactsLoaded(const QVariantList &contacts);
     void errorLoadingContacts();
 
@@ -77,9 +80,11 @@ private:
     QVariantMap contacts;
     QVariantMap colorAssignments;
     QVariantMap contactAssignments;
+    int currentColorIndex = -1;
 
     void initializeDatabase();
     void initializeContactAssignments();
+    void synchronizeData();
 };
 
 #endif // FUNZEL_H
