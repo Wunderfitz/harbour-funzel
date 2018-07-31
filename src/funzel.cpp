@@ -24,6 +24,7 @@
 #include <QMutableListIterator>
 #include <QMapIterator>
 #include <QSqlError>
+#include <QStandardPaths>
 
 const char SETTINGS_USE_ANIMATION[] = "settings/useAnimation";
 const char SETTINGS_ANIMATION_COLOR[] = "settings/animationColor";
@@ -307,7 +308,7 @@ void Funzel::initializeDatabase()
 {
     qDebug() << "Funzel::initializeDatabase";
     database = QSqlDatabase::addDatabase("QSQLITE");
-    database.setDatabaseName("/home/nemo/.local/share/system/Contacts/qtcontacts-sqlite/contacts.db");
+    database.setDatabaseName(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.local/share/system/Contacts/qtcontacts-sqlite/contacts.db");
     if (database.open()) {
         qDebug() << "Contacts database successfully opened :)";
         canUseContactsDb = true;
