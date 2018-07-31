@@ -265,7 +265,6 @@ void Funzel::onIncomingCall(const QDBusMessage &dBusMessage)
                    QString colorId = contactAssignments.value(contactId).toString();
                    qDebug() << "Contact found!" << colorId;
                    colorIndex = getColorIndex(colorId);
-                   emit powerColor(colorIndex);
                }
            }
        }

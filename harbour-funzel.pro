@@ -50,7 +50,8 @@ INSTALLS += 86.png 108.png 128.png 256.png \
 
 CONFIG += sailfishapp_i18n
 
-TRANSLATIONS += translations/harbour-funzel-de.ts
+TRANSLATIONS += translations/harbour-funzel-de.ts \
+                translations/harbour-funzel-ru.ts
 
 HEADERS += \
     src/funzel.h

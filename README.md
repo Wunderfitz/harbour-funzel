@@ -6,3 +6,6 @@ Sebastian J. Wolf [sebastian@ygriega.de](mailto:sebastian@ygriega.de)
 
 ## License
 Licensed under GNU GPLv3
+
+## Credits
+- Russian translation by Вячеслав Диконов

@@ -41,6 +41,59 @@
     </message>
 </context>
 <context>
+    <name>AssignedContactsListItem</name>
+    <message>
+        <source>Remove Contact Assignment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ColorSelectionPage</name>
+    <message>
+        <source>Select a Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Red</source>
+        <translation type="unfinished">Красный</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation type="unfinished">Зелёный</translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <translation type="unfinished">Синий</translation>
+    </message>
+    <message>
+        <source>Yellow</source>
+        <translation type="unfinished">Жёлтый</translation>
+    </message>
+    <message>
+        <source>Light Blue</source>
+        <translation type="unfinished">Голубой</translation>
+    </message>
+    <message>
+        <source>Purple</source>
+        <translation type="unfinished">Фиолетовый</translation>
+    </message>
+    <message>
+        <source>White</source>
+        <translation type="unfinished">Белый</translation>
+    </message>
+</context>
+<context>
+    <name>ContactsSelectionPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select a Contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
         <source>On</source>
@@ -49,6 +102,13 @@
     <message>
         <source>Off</source>
         <translation>Выкл</translation>
+    </message>
+</context>
+<context>
+    <name>LoadingIndicator</name>
+    <message>
+        <source>Loading...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -63,7 +123,7 @@
     </message>
     <message>
         <source>Enable LED animation on incoming call</source>
-        <translation>Включить "светомузыку" при входящих вызовах</translation>
+        <translation>Включить &quot;светомузыку&quot; при входящих вызовах</translation>
     </message>
     <message>
         <source>When your Gemini PDA receives a call, the backside LEDs will show an animation.</source>
@@ -102,10 +162,6 @@
         <translation>Проверка</translation>
     </message>
     <message>
-        <source>Animation Color</source>
-        <translation>Цвет</translation>
-    </message>
-    <message>
         <source>No Gemini PDA found!</source>
         <translation>Не найден Gemini PDA!</translation>
     </message>
@@ -116,6 +172,18 @@
     <message>
         <source>It seems that Funzel is not running on a Gemini PDA. As this is the only device which Funzel is supporting, this application will be rather useless on your device.</source>
         <translation>Повидимому, программа запущена не на Gemini PDA. Funzel не может быть вам полезен, так как не поддерживает другие устройства.</translation>
+    </message>
+    <message>
+        <source>Default Animation Color</source>
+        <translation type="unfinished">Цвет</translation>
+    </message>
+    <message>
+        <source>Contact-specific Animation Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Assign Color to Contact</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
