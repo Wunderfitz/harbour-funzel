@@ -131,6 +131,7 @@ Page {
                 text: qsTr("Test Animation")
                 enabled: funzelSwitch.checked
                 onClicked: {
+                    hoffModel.setColorIndex(funzelColor.currentIndex);
                     hoffModel.startTheHoff();
                     testAnimationTimer.start();
                 }

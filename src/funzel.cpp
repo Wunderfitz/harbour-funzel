@@ -33,7 +33,7 @@ const char SETTINGS_COLOR_ASSIGNMENT_PREFIX[] = "settings/colorAssignment_";
 Funzel::Funzel(QObject *parent) : QObject(parent), settings("harbour-funzel", "settings")
 {
     this->networkAccessManager = new QNetworkAccessManager(this);
-    wagnis = new Wagnis(this->networkAccessManager, "harbour-funzel", "0.2", this);
+    wagnis = new Wagnis(this->networkAccessManager, "harbour-funzel", "0.2.1", this);
 
     QDBusConnection::sessionBus().connect("", "/calls/active", "org.nemomobile.voicecall.VoiceCall", "lineIdChanged",
                                           this, SLOT(onIncomingCall(const QDBusMessage&)));

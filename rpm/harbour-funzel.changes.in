@@ -15,3 +15,6 @@
 * Tue Jul 31 2018 Sebastian J. Wolf <sebastian@ygriega.de> 0.2
 - Contact-specific animation colors
 - Russian translation (thanks to Вячеслав Диконов)
+
+* Wed Aug 1 2018 Sebastian J. Wolf <sebastian@ygriega.de> 0.2.1
+- Fix test animation mode
