@@ -16,7 +16,6 @@ CONFIG += sailfishapp
 
 QT += core dbus sql
 
-include(src/wagnis/wagnis.pri)
 SOURCES += src/harbour-funzel.cpp \
     src/funzel.cpp
 

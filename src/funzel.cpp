@@ -33,7 +33,6 @@ const char SETTINGS_COLOR_ASSIGNMENT_PREFIX[] = "settings/colorAssignment_";
 Funzel::Funzel(QObject *parent) : QObject(parent), settings("harbour-funzel", "settings")
 {
     this->networkAccessManager = new QNetworkAccessManager(this);
-    wagnis = new Wagnis(this->networkAccessManager, "harbour-funzel", "0.2.1", this);
 
     QDBusConnection::sessionBus().connect("", "/calls/active", "org.nemomobile.voicecall.VoiceCall", "lineIdChanged",
                                           this, SLOT(onIncomingCall(const QDBusMessage&)));
@@ -58,11 +57,6 @@ Funzel::~Funzel()
     powerLed(3, 0, 0, 0);
     powerLed(4, 0, 0, 0);
     powerLed(5, 0, 0, 0);
-}
-
-Wagnis *Funzel::getWagnis()
-{
-    return this->wagnis;
 }
 
 void Funzel::powerLed(const int &ledNumber, const int &intensityRed, const int &intensityGreen, const int &intensityBlue)

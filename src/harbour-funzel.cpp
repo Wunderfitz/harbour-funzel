@@ -28,7 +28,6 @@
 #include <QQmlContext>
 #include <QGuiApplication>
 #include "funzel.h"
-#include "wagnis/wagnis.h"
 
 int main(int argc, char *argv[])
 {
@@ -38,8 +37,6 @@ int main(int argc, char *argv[])
     QQmlContext *context = view.data()->rootContext();
     Funzel funzel;
     context->setContextProperty("funzel", &funzel);
-    Wagnis *wagnis = funzel.getWagnis();
-    context->setContextProperty("wagnis", wagnis);
 
     view->setSource(SailfishApp::pathTo("qml/harbour-funzel.qml"));
     view->show();

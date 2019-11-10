@@ -28,15 +28,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This product uses &lt;a href=&quot;https://werkwolf.eu/terms.html#wagnis&quot;&gt;Wagnis&lt;/a&gt; and is distributed by &lt;a href=&quot;https://werkwolf.eu&quot;&gt;WerkWolf OÜ&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Wagnis ID: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show Wagnis ID</source>
+        <source>This product is distributed by &lt;a href=&quot;https://werkwolf.eu&quot;&gt;WerkWolf OÜ&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -30,7 +30,6 @@
 #include <QVariantMap>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-#include "wagnis/wagnis.h"
 
 class Funzel : public QObject
 {
@@ -38,7 +37,6 @@ class Funzel : public QObject
 public:
     explicit Funzel(QObject *parent = 0);
     ~Funzel();
-    Wagnis *getWagnis();
 
     Q_INVOKABLE void powerLed(const int &ledNumber, const int &intensityRed, const int &intensityGreen, const int &intensityBlue);
     Q_INVOKABLE void setUseAnimation(const bool &useAnimation);
@@ -72,7 +70,6 @@ public slots:
 
 private:
     QNetworkAccessManager *networkAccessManager;
-    Wagnis *wagnis;
     QSettings settings;
     bool geminiFound;
     bool canUseContactsDb;
