@@ -73,6 +73,10 @@
         <source>White</source>
         <translation type="unfinished">Белый</translation>
     </message>
+    <message>
+        <source>Rainbow</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ContactsSelectionPage</name>
@@ -175,6 +179,10 @@
     </message>
     <message>
         <source>Assign Color to Contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rainbow</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

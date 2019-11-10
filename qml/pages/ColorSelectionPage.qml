@@ -111,6 +111,10 @@ Page {
                         colorName: qsTr("White")
                         colorId: "white"
                     }
+                    ListElement {
+                        colorName: qsTr("Rainbow")
+                        colorId: "rainbow"
+                    }
                 }
 
                 delegate: ListItem {

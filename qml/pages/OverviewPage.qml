@@ -119,6 +119,9 @@ Page {
                     MenuItem {
                         text: qsTr("White")
                     }
+                    MenuItem {
+                        text: qsTr("Rainbow")
+                    }
                 }
                 enabled: funzelSwitch.checked
                 onCurrentIndexChanged: {
@@ -139,7 +142,7 @@ Page {
 
             Timer {
                 id: testAnimationTimer
-                interval: 5000
+                interval: 7000
                 repeat: false
                 onTriggered: {
                     hoffModel.stopTheHoff();

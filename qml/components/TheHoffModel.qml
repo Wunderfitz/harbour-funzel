@@ -22,52 +22,75 @@ import Sailfish.Silica 1.0
 
 VisualItemModel {
 
-    property int red: 1;
-    property int green: 0;
-    property int blue: 0;
+    property variant ledColors: [{red: 1, green: 0, blue: 0},
+                                 {red: 1, green: 0, blue: 0},
+                                 {red: 1, green: 0, blue: 0},
+                                 {red: 1, green: 0, blue: 0},
+                                 {red: 1, green: 0, blue: 0}]
 
     function setColorIndex(chosenIndex) {
         switch (chosenIndex) {
-        case 0:
-            red   = 1;
-            green = 0;
-            blue  = 0;
+        case 0: // Red
+            ledColors = [{red: 1, green: 0, blue: 0},
+                         {red: 1, green: 0, blue: 0},
+                         {red: 1, green: 0, blue: 0},
+                         {red: 1, green: 0, blue: 0},
+                         {red: 1, green: 0, blue: 0}];
             break;
-        case 1:
-            red   = 0;
-            green = 1;
-            blue  = 0;
+        case 1: // Green
+            ledColors = [{red: 0, green: 1, blue: 0},
+                         {red: 0, green: 1, blue: 0},
+                         {red: 0, green: 1, blue: 0},
+                         {red: 0, green: 1, blue: 0},
+                         {red: 0, green: 1, blue: 0}];
             break;
-        case 2:
-            red   = 0;
-            green = 0;
-            blue  = 1;
+        case 2: // Blue
+            ledColors = [{red: 0, green: 0, blue: 1},
+                         {red: 0, green: 0, blue: 1},
+                         {red: 0, green: 0, blue: 1},
+                         {red: 0, green: 0, blue: 1},
+                         {red: 0, green: 0, blue: 1}];
             break;
-        case 3:
-            red   = 1;
-            green = 1;
-            blue  = 0;
+        case 3: // Yellow
+            ledColors = [{red: 1, green: 1, blue: 0},
+                         {red: 1, green: 1, blue: 0},
+                         {red: 1, green: 1, blue: 0},
+                         {red: 1, green: 1, blue: 0},
+                         {red: 1, green: 1, blue: 0}];
             break;
-        case 4:
-            red   = 0;
-            green = 1;
-            blue  = 1;
+        case 4: // Light Blue
+            ledColors = [{red: 0, green: 1, blue: 1},
+                         {red: 0, green: 1, blue: 1},
+                         {red: 0, green: 1, blue: 1},
+                         {red: 0, green: 1, blue: 1},
+                         {red: 0, green: 1, blue: 1}];
             break;
-        case 5:
-            red   = 1;
-            green = 0;
-            blue  = 1;
+        case 5: // Purple
+            ledColors = [{red: 1, green: 0, blue: 1},
+                         {red: 1, green: 0, blue: 1},
+                         {red: 1, green: 0, blue: 1},
+                         {red: 1, green: 0, blue: 1},
+                         {red: 1, green: 0, blue: 1}];
             break;
-        case 6:
-            red   = 1;
-            green = 1;
-            blue  = 1;
+        case 6: // White
+            ledColors = [{red: 1, green: 1, blue: 1},
+                         {red: 1, green: 1, blue: 1},
+                         {red: 1, green: 1, blue: 1},
+                         {red: 1, green: 1, blue: 1},
+                         {red: 1, green: 1, blue: 1}];
+            break;
+        case 7: // Rainbow
+            ledColors = [{red: 1, green: 0, blue: 0},  // Red
+                         {red: 1, green: 1, blue: 0},  // Yellow
+                         {red: 0, green: 1, blue: 1},  // Light Blue
+                         {red: 0, green: 0, blue: 1},  // Blue
+                         {red: 1, green: 0, blue: 1}]; // Purple
             break;
         }
     }
 
     function startTheHoff() {
-        console.log("[Funzel] Starting the Hoff...", red, green, blue);
+        console.log("[Funzel] Starting the Hoff...");
         timerOne.start();
     }
 

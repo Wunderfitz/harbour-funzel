@@ -205,6 +205,9 @@ QString Funzel::getColorId(const int &colorIndex)
     case 6:
         return "white";
         break;
+    case 7:
+        return "rainbow";
+        break;
     default:
         return "red";
         break;
@@ -233,6 +236,9 @@ int Funzel::getColorIndex(const QString &colorId)
     }
     if (colorId == "white") {
         return 6;
+    }
+    if (colorId == "rainbow") {
+        return 7;
     }
     return 0;
 }

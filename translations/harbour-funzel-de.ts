@@ -29,7 +29,7 @@
     </message>
     <message>
         <source>This product is distributed by &lt;a href=&quot;https://werkwolf.eu&quot;&gt;WerkWolf OÜ&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dieses Produkt wird von &lt;a href=&quot;https://werkwolf.eu&quot;&gt;WerkWolf OÜ&lt;/a&gt; vertrieben.</translation>
     </message>
 </context>
 <context>
@@ -72,6 +72,10 @@
     <message>
         <source>White</source>
         <translation>Weiß</translation>
+    </message>
+    <message>
+        <source>Rainbow</source>
+        <translation>Regenbogen</translation>
     </message>
 </context>
 <context>
@@ -176,6 +180,10 @@
     <message>
         <source>Assign Color to Contact</source>
         <translation>Farbe einem Kontakt zuweisen</translation>
+    </message>
+    <message>
+        <source>Rainbow</source>
+        <translation>Regenbogen</translation>
     </message>
 </context>
 </TS>

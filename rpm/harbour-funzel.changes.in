@@ -18,3 +18,8 @@
 
 * Wed Aug 1 2018 Sebastian J. Wolf <sebastian@ygriega.de> 0.2.1
 - Fix test animation mode
+
+* Sun Nov 10 2019 Sebastian J. Wolf <sebastian@ygriega.de> 0.3
+- Fix color selection in landscape mode
+- Add 'Rainbow' color
+- Remove Wagnis

@@ -72,7 +72,7 @@ Timer {
         } else {
             intensity--;
         }
-        funzel.powerLed(myLed, hoffModel.red * intensity, hoffModel.green * intensity, hoffModel.blue * intensity);
+        funzel.powerLed(myLed, hoffModel.ledColors[myLed - 1].red * intensity, hoffModel.ledColors[myLed - 1].green * intensity, hoffModel.ledColors[myLed - 1].blue * intensity);
         if (intensity === 0) {
             stop();
         }

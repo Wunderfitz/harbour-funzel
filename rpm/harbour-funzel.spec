@@ -13,7 +13,7 @@ Name:       harbour-funzel
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    A control center for the LEDs of the Gemini PDA
-Version:    0.2.1
+Version:    0.3
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
